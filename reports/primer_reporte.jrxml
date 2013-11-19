@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="primer_reporte" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f46b06c0-fd3c-40ce-a6a0-4e6a12f45142">
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     socios.`s_id` AS socios_s_id,
+     socios.`s_DNI` AS socios_s_DNI,
+     socios.`s_Apellidos` AS socios_s_Apellidos,
+     socios.`s_Nombres` AS socios_s_Nombres
+FROM
+     `socios` socios]]>
+	</queryString>
+	<field name="socios_s_id" class="java.lang.Integer"/>
+	<field name="socios_s_DNI" class="java.lang.String"/>
+	<field name="socios_s_Apellidos" class="java.lang.String"/>
+	<field name="socios_s_Nombres" class="java.lang.String"/>
+	<group name="socios_s_id">
+		<groupExpression><![CDATA[$F{socios_s_id}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement uuid="a9704c12-d9cf-49e7-a35c-bfbf80ed0efb" style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#CC0000"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{socios_s_id}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement uuid="bd4b9901-786a-4f4e-942b-cd1feccd4b5e" mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="9c6ace66-cf33-43bf-9e04-c6178f58e1a4" x="275" y="0" width="300" height="64"/>
+				<imageExpression><![CDATA["reports/leaf_banner_red.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="94560d18-bf5f-4d24-ab63-a45ba6ad5bb2" style="Title" x="0" y="13" width="263" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Red Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e8dfb7c8-c0be-48a2-b55f-5e5b7387dd35" style="SubTitle" x="117" y="46" width="157" height="22"/>
+				<textElement/>
+				<text><![CDATA[Leaf Red SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="f9e307a0-83b0-48b5-a55e-ae54a6311152" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="e37f35af-2484-4d06-9305-37c3536fc0b9" style="Column header" x="0" y="19" width="185" height="15"/>
+				<textElement/>
+				<text><![CDATA[socios_s_DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="104b8f1a-41bc-4a99-86cd-768d1ee48976" style="Column header" x="185" y="19" width="185" height="15"/>
+				<textElement/>
+				<text><![CDATA[socios_s_Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="260ccbe6-321e-4a37-a74c-a5ca998aa40f" style="Column header" x="370" y="19" width="185" height="15"/>
+				<textElement/>
+				<text><![CDATA[socios_s_Nombres]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="4c0be948-0983-4b63-81aa-1b1c7068af32" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="35daac2b-6a54-42cf-adb3-d0470060decb" style="Detail" x="0" y="0" width="185" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{socios_s_DNI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ed8b1d07-b3a7-41ef-9eed-b7bb2b043c0a" style="Detail" x="185" y="0" width="185" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{socios_s_Apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9af33624-be68-489b-862b-6d4af94b58f8" style="Detail" x="370" y="0" width="185" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{socios_s_Nombres}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="3d60250c-19a4-43dd-8236-aee54c8a2a00" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="627ea689-ffa9-4cf1-a55e-8e58c01fc8d1" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="e7d6babd-4406-4d30-9d79-571877c8e82d" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="8f3796ed-76b8-4243-8446-baa2cc550e36" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
