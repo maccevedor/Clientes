@@ -1,4 +1,4 @@
-package clientes;
+package Control;
 
 import java.sql.*;
 import javax.swing.*;
@@ -15,7 +15,7 @@ Connection conect = null;
              
            //Cargamos el Driver MySQL
            Class.forName("org.gjt.mm.mysql.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://127.0.0.1/cliente","root","");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/cliente","root","");
            //JOptionPane.showMessageDialog(null, "Conectado");
            //Cargamos el Driver Access
            //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
