@@ -1,0 +1,24 @@
+CREATE TRIGGER inserta_bitacora AFTER INSERT ON respuesta
+  FOR EACH ROW
+  INSERT INTO bitacora(bita_desc,bita_fech)
+  VALUES(CONCAT('Insercion de Respuesta No. ',NEW.resp_codi,': ',NEW.resp_desc),NOW());
+
+DROP TRIGGER inserta_bitacora;
+
+CREATE PROCEDURE insertaBitacora(Tdesc VARCHAR(100),Tusua INT)
+    INSERT INTO bitacora(bita_desc,bita_usua) VALUES(Tdesc,Tusua);
+
+CALL insertaBitacora('Insertar registro en Respuesta',91281787);
+
+DROP PROCEDURE insertaBitacora;
+
+
+CREATE TRIGGER insertaRC AFTER INSERT ON respuesta
+  FOR EACH ROW
+BEGIN
+  IF NEW.resp_corr='S' THEN
+   INSERT INTO respuesta_correcta(reco_desc,reco_preg) VALUES(NEW.resp_desc,NEW.resp_preg);
+  END IF;
+END;
+
+
