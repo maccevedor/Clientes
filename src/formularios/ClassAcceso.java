@@ -24,6 +24,9 @@ try{
     tabla=consulta.executeQuery("select nom_usuario , cla_usuario from usuarios where nom_usuario='"+usuario+"'and cla_usuario='"+clave+"'");
     if(tabla.next()){
          JOptionPane.showMessageDialog(null, "logueo correcto");
+        // sql = "update cliente set Sesion=now() where Nom_usuario="+usuario+"";
+        // PreparedStatement pst = conexio.prepareStatement(sql);
+         // pst.executeUpdate();
          Cliente menu=new Cliente();
          menu.show();
          menu.setExtendedState(new Cliente().MAXIMIZED_BOTH);
