@@ -80,13 +80,15 @@ public class Promocion extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         promocion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Descuentos", "Ofertas 2x1 o 3z2", "Entrada a concursos o juegos", "Regalos o muestras gratis", "cantidad extra del producto", "Reembolso o devolucion de efectivo", "Rebajas en el precio del producto", "Promociones online" }));
-        getContentPane().add(promocion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 166, 32));
-        getContentPane().add(otra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 166, 34));
+        getContentPane().add(promocion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 166, 32));
+        getContentPane().add(otra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 166, 34));
 
         tablaPromociones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,7 +112,7 @@ public class Promocion extends javax.swing.JFrame {
                 jToggleButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, 30));
+        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 90, 30));
 
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,10 +120,15 @@ public class Promocion extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 120, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 120, 40));
 
         jButton2.setText("Cancelar");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 110, 40));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 40));
 
         jButton3.setText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +136,23 @@ public class Promocion extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 100, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 100, 40));
+
+        jToggleButton5.setText("Encuestas");
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 130, 80));
+
+        jToggleButton2.setText("Cliente");
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 130, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,6 +199,31 @@ public class Promocion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        promocion.setEnabled(true);
+        otra.setEnabled(false);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+        // TODO add your handling code here:
+            Encuesta menu=new Encuesta();
+         menu.show();
+         menu.setExtendedState(new Encuesta().NORMAL);
+         this.setVisible(false);
+         
+        
+    }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        // TODO add your handling code here:
+         Cliente menu=new Cliente();
+         menu.show();
+         menu.setExtendedState(new Cliente().NORMAL);
+         this.setVisible(false);
+    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +266,8 @@ public class Promocion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JTextField otra;
     private javax.swing.JComboBox promocion;
     private javax.swing.JTable tablaPromociones;
