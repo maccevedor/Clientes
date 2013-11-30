@@ -6,19 +6,101 @@
 
 package formularios;
 
+import Control.conectar;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author macevedor
  */
 public class Encuesta extends javax.swing.JFrame {
-
+ private DefaultTableModel model;
     /**
      * Creates new form Encuesta
      */
     public Encuesta() {
         initComponents();
+        bloquear();
+        cargar();
     }
-
+    
+    
+     void cargar(){
+        
+        //Titulos de la Tabla
+        String [] titulos = {"Servicio","Frecuencia","Costo","Tiempo","Opinion","Mejora","Promociones"};
+        String [] registros = new String[7];
+        String sql = "select Servicio,Frecuencia,Costo,Tiempo,Opinion,Mejora,Promociones  from encuesta ";
+        model = new DefaultTableModel(null,titulos);
+        conectar cc = new conectar();
+        Connection cn = cc.conexion();
+        
+      
+       try {
+             Statement st = cn.createStatement();
+             ResultSet rs = st.executeQuery(sql);
+             
+             while(rs.next()){
+             registros[0]=rs.getString("Servicio");
+             registros[1]=rs.getString("Frecuencia");
+             registros[2]=rs.getString("Costo");
+             registros[3]=rs.getString("Tiempo");
+             registros[4]=rs.getString("Opinion");
+             registros[5]=rs.getString("Mejora");
+             registros[6]=rs.getString("Promociones");
+             
+             
+             model.addRow(registros);
+             }
+             tablaEncuestas.setModel(model);
+       } catch (SQLException ex) {
+           //Logger.getLogger(ing_cli.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, ex);
+       }
+        
+    }
+    
+    void limpiar(){
+        
+        txtServicio.setText("");
+        txtFrecuencia.setText("");
+        txtCosto.setText("");
+        txtTiempo.setText("");
+        txtOpinion.setText("");
+        txtMejora.setText("");
+        txtPromociones.setText("");
+                
+    }
+    
+    void bloquear(){
+        
+        txtServicio.setEnabled(false);
+        txtFrecuencia.setEnabled(false);
+        txtCosto.setEnabled(false);
+        txtTiempo.setEnabled(false);
+        txtOpinion.setEnabled(false);
+        txtMejora.setEnabled(false);
+        txtPromociones.setEnabled(false);
+        
+    }
+    
+    void desbloquear(){
+         txtServicio.setEnabled(true);
+        txtFrecuencia.setEnabled(true);
+        txtCosto.setEnabled(true);
+        txtTiempo.setEnabled(true);
+        txtOpinion.setEnabled(true);
+        txtMejora.setEnabled(true);
+        txtPromociones.setEnabled(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,13 +110,13 @@ public class Encuesta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        txtServicio = new javax.swing.JTextField();
+        txtFrecuencia = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
+        txtTiempo = new javax.swing.JTextField();
+        txtOpinion = new javax.swing.JTextField();
+        txtMejora = new javax.swing.JTextField();
+        txtPromociones = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -42,8 +124,8 @@ public class Encuesta extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -51,16 +133,19 @@ public class Encuesta extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaEncuestas = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 100, 20));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 100, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 100, -1));
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 100, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 100, -1));
-        getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 100, -1));
+        getContentPane().add(txtServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 100, 20));
+        getContentPane().add(txtFrecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 100, -1));
+        getContentPane().add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 100, -1));
+        getContentPane().add(txtTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 100, -1));
+        getContentPane().add(txtOpinion, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 100, -1));
+        getContentPane().add(txtMejora, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 100, -1));
+        getContentPane().add(txtPromociones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 100, -1));
 
         jLabel1.setText("Que servicio Adquirio");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
@@ -83,25 +168,35 @@ public class Encuesta extends javax.swing.JFrame {
         jLabel7.setText("Quepromocion le gustaria");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
 
-        jButton1.setText("Nuevo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
 
-        jButton2.setText("Guardar");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
 
         jButton3.setText("Cancelar");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, -1));
 
         jButton4.setText("Informe");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
 
         jButton5.setText("Salir");
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, -1, -1));
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -124,12 +219,33 @@ public class Encuesta extends javax.swing.JFrame {
         });
         getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 130, 80));
 
+        tablaEncuestas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tablaEncuestas);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 490, 100));
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 360, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        desbloquear();
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
@@ -146,6 +262,56 @@ public class Encuesta extends javax.swing.JFrame {
          menu.setExtendedState(new Cliente().NORMAL);
          this.setVisible(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        conectar cc = new conectar();
+        Connection cn = cc.conexion();
+        //inicializamos
+        String servicio,frecuencia,costo,tiempo,opinion,mejora,promocion;
+        String sql="";
+        servicio = txtServicio.getText();
+        frecuencia = txtFrecuencia.getText();
+        costo = txtCosto.getText();
+        tiempo = txtTiempo.getText();
+        opinion = txtOpinion.getText();
+        mejora = txtPromociones.getText();
+        promocion = txtPromociones.getText();
+        
+
+         sql = "insert into encuesta (Servicio,Frecuencia,Costo,Tiempo,Opinion,Mejora,Promociones) values (?,?,?,?,?,?,?)";
+          try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1,servicio);
+            pst.setString(2,frecuencia);
+            pst.setString(3,costo);
+            pst.setString(4,tiempo);
+            pst.setString(5,opinion);
+            pst.setString(6,mejora);
+            pst.setString(7,promocion);
+            
+            int n = pst.executeUpdate();
+            if (n>0){
+                JOptionPane.showMessageDialog(null,"Registro Guardado");
+                bloquear();
+                cargar();
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,8 +349,9 @@ public class Encuesta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -197,14 +364,16 @@ public class Encuesta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JTable tablaEncuestas;
+    private javax.swing.JTextField txtCosto;
+    private javax.swing.JTextField txtFrecuencia;
+    private javax.swing.JTextField txtMejora;
+    private javax.swing.JTextField txtOpinion;
+    private javax.swing.JTextField txtPromociones;
+    private javax.swing.JTextField txtServicio;
+    private javax.swing.JTextField txtTiempo;
     // End of variables declaration//GEN-END:variables
 }

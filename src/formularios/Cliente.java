@@ -231,13 +231,14 @@ public class Cliente extends javax.swing.JFrame {
         });
         getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 128, 141, -1));
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, 79, -1));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 130, -1));
 
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +281,7 @@ public class Cliente extends javax.swing.JFrame {
                 txtBuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(696, 311, 65, -1));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 311, 100, -1));
 
         jLabel1.setText("Buscar");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 311, 48, 20));
@@ -371,7 +372,7 @@ public class Cliente extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 310, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
 
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -449,60 +450,6 @@ public class Cliente extends javax.swing.JFrame {
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
          txtApellido.transferFocus();
     }//GEN-LAST:event_txtApellidoActionPerformed
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-      
-        
-        // Realizamos la conexion con la base datos
-        conectar cc = new conectar();
-        Connection cn = cc.conexion();
-        String ced,nom,ape,sex,fechaN,ecivil,nhijos,municipios,direccion,email,telefono,celular;
-        String sql="";
-        //Obtenemos los valores de los campos
-        ced = txtCedula.getText();
-        nom = txtNombre.getText();
-        ape = txtApellido.getText();
-        // Realizamos el cambio de formato de la fecha , esto con el fin de que no aparezca la hora     
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        java.util.Date fechaSeleccionada = fecha.getDate();
-        fechaN = String.valueOf(formato.format(fechaSeleccionada));
-        sex = String.valueOf(sexo.getSelectedItem());
-        ecivil = String.valueOf(civil.getSelectedItem());
-        nhijos = txtHijos.getText();
-        municipios = String.valueOf(municipio.getSelectedItem());
-        direccion = txtDireccion.getText();
-        email = txtEmail.getText();
-        telefono = txtTelefono.getText();
-        celular = txtCelular.getText();
-        
-        
-        
-        sql = "insert into cliente (Cedula,Nombre,Apellido,Sexo,FchNacimiento,Ecivil,Nhijos,Municipio,Direccion,Email,Telefono,Celular) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement pst = cn.prepareStatement(sql);
-            pst.setString(1,ced);
-            pst.setString(2,nom);
-            pst.setString(3,ape);
-            pst.setString(4,sex);
-            pst.setString(5,fechaN);            
-            pst.setString(6,ecivil); 
-            pst.setString(7,nhijos); 
-            pst.setString(8,municipios); 
-            pst.setString(9,direccion); 
-            pst.setString(10,email); 
-            pst.setString(11,telefono); 
-            pst.setString(12,celular); 
-            
-            int n = pst.executeUpdate();
-            if (n>0){
-                JOptionPane.showMessageDialog(null,"Registro Guardado");
-                bloquear();
-                cargar("");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
      cargar(txtBuscar.getText());
@@ -605,6 +552,57 @@ public class Cliente extends javax.swing.JFrame {
          menu.setExtendedState(new Promocion().NORMAL);
          this.setVisible(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+
+        // Realizamos la conexion con la base datos
+        conectar cc = new conectar();
+        Connection cn = cc.conexion();
+        String ced,nom,ape,sex,fechaN,ecivil,nhijos,municipios,direccion,email,telefono,celular;
+        String sql="";
+        //Obtenemos los valores de los campos
+        ced = txtCedula.getText();
+        nom = txtNombre.getText();
+        ape = txtApellido.getText();
+        // Realizamos el cambio de formato de la fecha , esto con el fin de que no aparezca la hora
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date fechaSeleccionada = fecha.getDate();
+        fechaN = String.valueOf(formato.format(fechaSeleccionada));
+        sex = String.valueOf(sexo.getSelectedItem());
+        ecivil = String.valueOf(civil.getSelectedItem());
+        nhijos = txtHijos.getText();
+        municipios = String.valueOf(municipio.getSelectedItem());
+        direccion = txtDireccion.getText();
+        email = txtEmail.getText();
+        telefono = txtTelefono.getText();
+        celular = txtCelular.getText();
+
+        sql = "insert into cliente (Cedula,Nombre,Apellido,Sexo,FchNacimiento,Ecivil,Nhijos,Municipio,Direccion,Email,Telefono,Celular) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement pst = cn.prepareStatement(sql);
+            pst.setString(1,ced);
+            pst.setString(2,nom);
+            pst.setString(3,ape);
+            pst.setString(4,sex);
+            pst.setString(5,fechaN);
+            pst.setString(6,ecivil);
+            pst.setString(7,nhijos);
+            pst.setString(8,municipios);
+            pst.setString(9,direccion);
+            pst.setString(10,email);
+            pst.setString(11,telefono);
+            pst.setString(12,celular);
+
+            int n = pst.executeUpdate();
+            if (n>0){
+                JOptionPane.showMessageDialog(null,"Registro Guardado");
+                bloquear();
+                cargar("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
  
     /**
      * @param args the command line arguments
