@@ -144,15 +144,15 @@ public class Promocion extends javax.swing.JFrame {
                 jToggleButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 130, 80));
+        getContentPane().add(jToggleButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 130, 80));
 
-        jToggleButton2.setText("Cliente");
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cliente.png"))); // NOI18N
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 130, 80));
+        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 160, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

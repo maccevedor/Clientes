@@ -17,13 +17,6 @@ Connection conect = null;
            Class.forName("org.gjt.mm.mysql.Driver");
            conect = DriverManager.getConnection("jdbc:mysql://localhost/cliente","root","");
            //JOptionPane.showMessageDialog(null, "Conectado");
-           //Cargamos el Driver Access
-           //Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-           //Conectar en red base 
-           //String strConect = "jdbc:odbc:Driver=Microsoft Access Driver (*.mdb);DBQ=//servidor/bd_cw/cw.mdb";
-           //Conectar Localmente
-           //String strConect = "jdbc:odbc:Driver=Microsoft Access Driver (*.mdb);DBQ=D:/cwnetbeans/cw.mdb";
-          //conect = DriverManager.getConnection(strConect,"",""); 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error "+e);
         }

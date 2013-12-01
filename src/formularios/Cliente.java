@@ -30,17 +30,23 @@ public class Cliente extends javax.swing.JFrame {
         
         //Titulos de la Tabla
         String [] titulos = {"Cedula","Nombre","Apellido","Sexo","Fecha Nacimiento","Municipio","Direccion","Correo","Celular"};
+        //Nuremos de campos de Columunas
         String [] registros = new String[9];
+        //Creamos la consulta sql que nos trae los datos de la tabla cliente
         String sql = "select Cedula,Nombre,Apellido,Sexo,fchNacimiento,Municipio,Direccion,Email,Celular from cliente where concat(Nombre,'',Apellido) like '%"+valor+"%'";
         model = new DefaultTableModel(null,titulos);
+        
+        //Llarma la conexion de base datos 
         conectar cc = new conectar();
         Connection cn = cc.conexion();
         
-      
+
+        //Definimos los valores de array , que fueron tomadas de el sql       
        try {
              Statement st = cn.createStatement();
+             //asignamos a rs la consulta
              ResultSet rs = st.executeQuery(sql);
-             
+             //ingresamos datos de la consulta
              while(rs.next()){
              registros[0]=rs.getString("Cedula");
              registros[1]=rs.getString("Nombre");
@@ -80,7 +86,7 @@ public class Cliente extends javax.swing.JFrame {
         txtNombre.setEnabled(false);
         txtApellido.setEnabled(false);
         fecha.setEnabled(false);
-        txtHijos.setEditable(false);
+        txtHijos.setEnabled(false);
         txtDireccion.setEnabled(false);
         txtEmail.setEnabled(false);
         txtTelefono.setEnabled(false);
@@ -106,15 +112,14 @@ public class Cliente extends javax.swing.JFrame {
     }
     
          void BuscarClienteEditar(String cod) {
-        
+                //llamaos la conexion
                conectar cc = new conectar();
                Connection cn = cc.conexion();
         
         try{
            
-            //String codi="",desc="",prec="",stock="";
             limpiar();
-            String ced="",nom="",ape="",sex,fechaN,ecivil,nhijos="",municipios,direccion="",email="",telefono="",celular="";
+            String ced="",nom="",ape="",sex,fechaN,ecivil,nhijos="",municipios="",direccion="",email="",telefono="",celular="";
             String cons="select * from cliente WHERE Cedula='"+cod+"'";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(cons);
@@ -140,7 +145,7 @@ public class Cliente extends javax.swing.JFrame {
             //sexo
             //fecha
             //Estado Civil
-            //municipios
+            // municipio.
             txtEmail.setText(email);
             txtHijos.setText(nhijos);
             txtDireccion.setText(direccion);
@@ -232,21 +237,22 @@ public class Cliente extends javax.swing.JFrame {
         getContentPane().add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 128, 141, -1));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setToolTipText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 130, -1));
+        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 60, -1));
 
-        btnNuevo.setText("Nuevo");
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevo.png"))); // NOI18N
+        btnNuevo.setToolTipText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 310, 73, -1));
+        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 60, 70));
 
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -276,6 +282,11 @@ public class Cliente extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 351, 950, 270));
 
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -452,7 +463,9 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-     cargar(txtBuscar.getText());
+     
+        //Este campo envia el dato que realiza la busqueda en la base con nombre y apellido del cliente
+        cargar(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
@@ -518,10 +531,11 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-         conectar cc = new conectar();
+        // Abrio al conexion
+        conectar cc = new conectar();
         Connection cn = cc.conexion();
-           String sql="UPDATE cliente SET Nombre = '"+txtNombre.getText()+"',Apellido ='"+txtApellido.getText()+"',Sexo = '"+String.valueOf(sexo.getSelectedItem())+"',Ecivil = '"+String.valueOf(civil.getSelectedItem())+"',Nhijos ='"+txtHijos.getText()+"',Municipio = '"+String.valueOf(municipio.getSelectedItem())+"',Direccion ='"+txtDireccion.getText()+"',Email ='"+txtEmail.getText()+"',Telefono ='"+txtTelefono.getText()+"',Celular ='"+txtCelular.getText()+"' WHERE Cedula = '"+txtCedula.getText()+"'" ; 
+        //Sql que me identifica cual es el usario que debo modificar
+        String sql="UPDATE cliente SET Nombre = '"+txtNombre.getText()+"',Apellido ='"+txtApellido.getText()+"',Sexo = '"+String.valueOf(sexo.getSelectedItem())+"',Ecivil = '"+String.valueOf(civil.getSelectedItem())+"',Nhijos ='"+txtHijos.getText()+"',Municipio = '"+String.valueOf(municipio.getSelectedItem())+"',Direccion ='"+txtDireccion.getText()+"',Email ='"+txtEmail.getText()+"',Telefono ='"+txtTelefono.getText()+"',Celular ='"+txtCelular.getText()+"' WHERE Cedula = '"+txtCedula.getText()+"'" ; 
     try {
         PreparedStatement pst = cn.prepareStatement(sql);
         pst.executeUpdate();
@@ -603,6 +617,10 @@ public class Cliente extends javax.swing.JFrame {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
  
     /**
      * @param args the command line arguments
