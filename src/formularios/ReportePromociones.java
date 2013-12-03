@@ -6,11 +6,6 @@
 
 package formularios;
 
-/**
- *
- * @author macevedor
- */
-import Control.conectar;
 import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,11 +19,12 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author usuario
+ * @author macevedor
  */
-public class Reporte {
+public class ReportePromociones {
+    
     private Connection cn;
-    public Reporte(){
+    public ReportePromociones(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             cn=DriverManager.getConnection("jdbc:mysql://localhost/cliente","root","");
@@ -42,7 +38,7 @@ public class Reporte {
     public void mostrarReporte()throws Exception{       
       
         
-        JasperReport report= JasperCompileManager.compileReport(System.getProperty("user.dir").concat("/src/formularios/clientes.jrxml"));
+        JasperReport report= JasperCompileManager.compileReport(System.getProperty("user.dir").concat("/src/formularios/Promociones.jrxml"));
         JasperPrint print= JasperFillManager.fillReport(report, null,cn);
         JasperViewer view=new JasperViewer(print,false);
         view.setTitle("Mi primer repòrte");

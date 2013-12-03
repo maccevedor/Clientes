@@ -1,6 +1,7 @@
 
 package formularios;
 
+import Control.Validaciones;
 import Control.conectar;
 import java.sql.*;
 import java.util.Calendar;
@@ -16,7 +17,7 @@ import java.text.SimpleDateFormat;
  */
 public class Cliente extends javax.swing.JFrame {
     
-
+private Validaciones val = new Validaciones();
 
    DefaultTableModel model;
     public Cliente() {
@@ -252,23 +253,25 @@ public class Cliente extends javax.swing.JFrame {
                 btnNuevoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 60, 70));
+        getContentPane().add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 50, 60));
 
-        btnModificar.setText("Modificar");
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar.png"))); // NOI18N
+        btnModificar.setToolTipText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 310, -1, -1));
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 60, -1));
 
-        jToggleButton3.setText("Cancelar");
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar.png"))); // NOI18N
+        jToggleButton3.setToolTipText("Cancelar");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 310, -1, -1));
+        getContentPane().add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 60, -1));
 
         tablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,6 +285,7 @@ public class Cliente extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 351, 950, 270));
 
+        txtBuscar.setToolTipText("Digite el nombre o apellido a buscar");
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBuscarActionPerformed(evt);
@@ -292,18 +296,19 @@ public class Cliente extends javax.swing.JFrame {
                 txtBuscarKeyReleased(evt);
             }
         });
-        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 311, 100, -1));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 100, 30));
 
-        jLabel1.setText("Buscar");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(638, 311, 48, 20));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Buscar.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 48, -1));
 
-        jToggleButton4.setText("Informe");
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte.png"))); // NOI18N
+        jToggleButton4.setToolTipText("Informe");
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 310, -1, -1));
+        getContentPane().add(jToggleButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 60, -1));
 
         sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
         sexo.addActionListener(new java.awt.event.ActionListener() {
@@ -330,6 +335,12 @@ public class Cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 170, -1));
+
+        txtCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCelularKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 170, -1));
         getContentPane().add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 159, 141, -1));
 
@@ -369,6 +380,12 @@ public class Cliente extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Ingrese  los Datos del Cliente");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 11, 275, 40));
+
+        txtHijos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHijosKeyTyped(evt);
+            }
+        });
         getContentPane().add(txtHijos, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 170, -1));
 
         jLabel14.setText("Estado CIvil");
@@ -377,39 +394,44 @@ public class Cliente extends javax.swing.JFrame {
         civil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Soltero ", "Casado ", "Divorciado ", "Viudo" }));
         getContentPane().add(civil, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 224, 141, -1));
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
+        btnEliminar.setToolTipText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 60, -1));
 
-        jButton2.setText("Salir");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        jButton2.setToolTipText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(801, 310, 150, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 280, 70, -1));
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizar.png"))); // NOI18N
+        btnActualizar.setToolTipText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 310, -1, -1));
+        getContentPane().add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 60, -1));
 
-        jToggleButton2.setText("Promociones");
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/promociones.png"))); // NOI18N
+        jToggleButton2.setSelected(true);
+        jToggleButton2.setToolTipText("Promociones");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, 130, 80));
+        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 40, 130, 100));
 
-        jToggleButton5.setText("Encuestas");
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Encuestas.png"))); // NOI18N
         jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton5ActionPerformed(evt);
@@ -565,6 +587,10 @@ public class Cliente extends javax.swing.JFrame {
          menu.show();
          menu.setExtendedState(new Promocion().NORMAL);
          this.setVisible(false);
+         
+ 
+         
+         
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -621,6 +647,23 @@ public class Cliente extends javax.swing.JFrame {
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtHijosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHijosKeyTyped
+        // TODO add your handling code here:
+          if(!val.TeclaEntero(txtHijos.getText(), evt)){
+           evt.consume();
+           JOptionPane.showMessageDialog(this, "Debe digitar solo números");
+        }        
+        
+    }//GEN-LAST:event_txtHijosKeyTyped
+
+    private void txtCelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCelularKeyTyped
+        // TODO add your handling code here:
+          if(!val.TeclaEntero(txtCelular.getText(), evt)){
+           evt.consume();
+           JOptionPane.showMessageDialog(this, "Debe digitar solo números");
+        }        
+    }//GEN-LAST:event_txtCelularKeyTyped
  
     /**
      * @param args the command line arguments

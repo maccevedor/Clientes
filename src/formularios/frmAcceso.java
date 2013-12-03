@@ -76,6 +76,7 @@ public class frmAcceso extends javax.swing.JFrame {
         // TODO add your handling code here:
         ClassAcceso ca=new ClassAcceso();
         ca.acceso(jTextField1.getText(), jPasswordField1.getText());
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

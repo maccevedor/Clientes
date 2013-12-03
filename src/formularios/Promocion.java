@@ -76,17 +76,23 @@ public class Promocion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPromociones = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnOtra = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        promocion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccionar", "Descuentos", "Ofertas 2x1 o 3z2", "Entrada a concursos o juegos", "Regalos o muestras gratis", "cantidad extra del producto", "Reembolso o devolucion de efectivo", "Rebajas en el precio del producto", "Promociones online" }));
+        promocion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Descuentos", "Entrada a concursos o juegos", "Regalos o muestras gratis", "cantidad extra del producto", "Reembolso o devolucion de efectivo", "Rebajas en el precio del producto", "Promociones online", "Otra" }));
+        promocion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                promocionActionPerformed(evt);
+            }
+        });
         getContentPane().add(promocion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 166, 32));
         getContentPane().add(otra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 166, 34));
 
@@ -100,45 +106,50 @@ public class Promocion extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaPromociones);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 500, 133));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 570, 180));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Promociones");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 150, 30));
 
-        jToggleButton1.setText("Otra");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOtra.setText("Otra");
+        btnOtra.setToolTipText("Ingrese los datos en la Caja de Texto");
+        btnOtra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                btnOtraActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 90, 30));
+        getContentPane().add(btnOtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 90, 30));
 
-        jButton1.setText("Guardar");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.png"))); // NOI18N
+        jButton1.setToolTipText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 120, 40));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 70, 60));
 
-        jButton2.setText("Cancelar");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar.png"))); // NOI18N
+        jButton2.setToolTipText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, 40));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 70, -1));
 
-        jButton3.setText("Salir");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+        jButton3.setToolTipText("Salir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 100, 40));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 80, 60));
 
-        jToggleButton5.setText("Encuestas");
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Encuestas.png"))); // NOI18N
+        jToggleButton5.setToolTipText("Encuestas");
         jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton5ActionPerformed(evt);
@@ -147,30 +158,42 @@ public class Promocion extends javax.swing.JFrame {
         getContentPane().add(jToggleButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 130, 80));
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cliente.png"))); // NOI18N
+        jToggleButton2.setToolTipText("Clientes");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 160, 150));
+        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 130, 90));
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte.png"))); // NOI18N
+        jButton4.setToolTipText("Informe");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 60, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void btnOtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOtraActionPerformed
         // TODO add your handling code here:
-        otra.setEnabled(true);
+        otra.setEnabled(true); 
+        promocion.setSelectedIndex(7);
         promocion.setEnabled(false);
         
         
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        
+    }//GEN-LAST:event_btnOtraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         conectar cc = new conectar();
         Connection cn = cc.conexion();
         //inicializamos
-        String promociones,otras;
+        String promociones,otras="";
         String sql="";
         promociones = String.valueOf(promocion.getSelectedItem());
         otras = otra.getText();
@@ -202,6 +225,8 @@ public class Promocion extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         promocion.setEnabled(true);
+        promocion.setSelectedIndex(0);
+        otra.setText("");
         otra.setEnabled(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -223,6 +248,20 @@ public class Promocion extends javax.swing.JFrame {
          menu.setExtendedState(new Cliente().NORMAL);
          this.setVisible(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void promocionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_promocionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_promocionActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ReportePromociones r = new ReportePromociones();
+        try {
+            r.mostrarReporte();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Ocurrio un error.. "+e.getMessage());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,12 +299,13 @@ public class Promocion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnOtra;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JTextField otra;

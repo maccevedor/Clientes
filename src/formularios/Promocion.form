@@ -28,19 +28,21 @@
     <Component class="javax.swing.JComboBox" name="promocion">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="9">
-            <StringItem index="0" value="Seleccionar"/>
-            <StringItem index="1" value="Descuentos"/>
-            <StringItem index="2" value="Ofertas 2x1 o 3z2"/>
-            <StringItem index="3" value="Entrada a concursos o juegos"/>
-            <StringItem index="4" value="Regalos o muestras gratis"/>
-            <StringItem index="5" value="cantidad extra del producto"/>
-            <StringItem index="6" value="Reembolso o devolucion de efectivo"/>
-            <StringItem index="7" value="Rebajas en el precio del producto"/>
-            <StringItem index="8" value="Promociones online"/>
+          <StringArray count="8">
+            <StringItem index="0" value="Descuentos"/>
+            <StringItem index="1" value="Entrada a concursos o juegos"/>
+            <StringItem index="2" value="Regalos o muestras gratis"/>
+            <StringItem index="3" value="cantidad extra del producto"/>
+            <StringItem index="4" value="Reembolso o devolucion de efectivo"/>
+            <StringItem index="5" value="Rebajas en el precio del producto"/>
+            <StringItem index="6" value="Promociones online"/>
+            <StringItem index="7" value="Otra"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="promocionActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="80" y="70" width="166" height="32"/>
@@ -60,7 +62,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="70" y="260" width="500" height="133"/>
+          <AbsoluteConstraints x="40" y="260" width="570" height="180"/>
         </Constraint>
       </Constraints>
 
@@ -94,12 +96,13 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+    <Component class="javax.swing.JToggleButton" name="btnOtra">
       <Properties>
         <Property name="text" type="java.lang.String" value="Otra"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese los datos en la Caja de Texto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOtraActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -109,46 +112,58 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/Guardar.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Guardar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="200" width="120" height="40"/>
+          <AbsoluteConstraints x="110" y="190" width="70" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/cancelar.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="200" width="110" height="40"/>
+          <AbsoluteConstraints x="200" y="190" width="70" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Salir"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/salir.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="360" y="200" width="100" height="40"/>
+          <AbsoluteConstraints x="290" y="190" width="80" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Encuestas"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/Encuestas.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Encuestas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton5ActionPerformed"/>
@@ -164,13 +179,30 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/cliente.png"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Clientes"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="460" y="10" width="160" height="150"/>
+          <AbsoluteConstraints x="470" y="50" width="130" height="90"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/reporte.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Informe"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="390" y="190" width="60" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
