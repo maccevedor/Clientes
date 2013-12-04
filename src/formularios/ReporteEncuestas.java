@@ -39,7 +39,7 @@ public class ReporteEncuestas {
     public void mostrarReporte()throws Exception{       
       
         
-        JasperReport report= JasperCompileManager.compileReport(System.getProperty("user.dir").concat("/src/formularios/Encuestas.jrxml"));
+        JasperReport report= JasperCompileManager.compileReport(System.getProperty("user.dir").concat("/src/formularios/encuestas.jrxml"));
         JasperPrint print= JasperFillManager.fillReport(report, null,cn);
         JasperViewer view=new JasperViewer(print,false);
         view.setTitle("Mi primer repòrte");

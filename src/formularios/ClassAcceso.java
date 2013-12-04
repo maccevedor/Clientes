@@ -27,9 +27,9 @@ try{
         // sql = "update cliente set Sesion=now() where Nom_usuario="+usuario+"";
         // PreparedStatement pst = conexio.prepareStatement(sql);
          // pst.executeUpdate();
-         Cliente menu=new Cliente();
+         Encuesta menu=new Encuesta();
          menu.show();
-         menu.setExtendedState(new Cliente().MAXIMIZED_BOTH);
+         menu.setExtendedState(new Encuesta().MAXIMIZED_BOTH);
          }
     else{
         JOptionPane.showMessageDialog(null,"usuario y clave incorrecto");
